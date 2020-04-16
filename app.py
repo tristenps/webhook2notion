@@ -8,8 +8,7 @@ from flask import request
 app = Flask(__name__)
 
 
-def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', \
-    client = 'example'):
+def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', clt = 'example'):
     # notion
     client = NotionClient(token)
     cv = client.get_collection_view(collectionURL)
@@ -19,7 +18,7 @@ def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', \
     # New Attempt
     row.title = title
     row.desc = desc
-    row.client = client
+    row.client = clt
 
     #Changed file more
 
