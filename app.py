@@ -19,7 +19,7 @@ def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', \
     # New Attempt
     row.title = title
     row.desc = desc
-    row.client = client
+    row.client = 'test'
 
     #Changed file more
 
