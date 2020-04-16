@@ -13,7 +13,19 @@ def createNotionTask(token, collectionURL, content):
     client = NotionClient(token)
     cv = client.get_collection_view(collectionURL)
     row = cv.collection.add_row()
-    row.title = content
+    #row.title = content
+
+    # New Parser Delination
+    i = 0
+    for data in content:
+        if i == 0:
+            row.title = content[0]
+        elif i == 1:
+            row.desc = content[1]
+        elif i == 2:
+            row.client = content [2]
+        i += 1
+
 
 
 @app.route('/create_todo', methods=['GET'])
