@@ -19,7 +19,7 @@ def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', \
     # New Attempt
     row.title = title
     row.desc = desc
-    row.client = 'test'
+    row.client = client
 
     #Changed file more
 
@@ -34,7 +34,7 @@ def create_todo():
     token_v2 = os.environ.get("TOKEN")
     url = os.environ.get("URL")
     createNotionTask(token_v2, url, title, desc, client)
-    return f'added {todo} to Notion'
+    return f'added {title} to Notion'
 
 
 if __name__ == '__main__':
