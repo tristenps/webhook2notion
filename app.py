@@ -8,33 +8,30 @@ from flask import request
 app = Flask(__name__)
 
 
-def createNotionTask(token, collectionURL, content):
+def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', \
+    client = 'example'):
     # notion
     client = NotionClient(token)
     cv = client.get_collection_view(collectionURL)
     row = cv.collection.add_row()
     #row.title = content
 
-    # New Parser Delination
-    i = 0
-    for data in content:
-        if i == 0:
-            row.title = content[0]
-        elif i == 1:
-            row.desc = content[1]
-        elif i == 2:
-            row.client = content [2]
-        i += 1
+    # New Attempt
+    row.title = title
+    row.desc = desc
+    row.client = client
 
 
 
 @app.route('/create_todo', methods=['GET'])
 def create_todo():
 
-    todo = request.args.get('todo')
+    title = request.args.get('title')
+    desc = request.args.get('desc')
+    client = request.args.get('client')
     token_v2 = os.environ.get("TOKEN")
     url = os.environ.get("URL")
-    createNotionTask(token_v2, url, todo)
+    createNotionTask(token_v2, url, title, desc, client)
     return f'added {todo} to Notion'
 
 
