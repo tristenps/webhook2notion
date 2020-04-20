@@ -7,24 +7,18 @@ from flask import request
 
 app = Flask(__name__)
 
-
-def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', clt = 'example'):
+def createNotionTask(token, collectionURL, title = 'New Task', desc = 'Blank', clt = 'Demo'):
     # notion
     client = NotionClient(token)
     cv = client.get_collection_view(collectionURL)
     row = cv.collection.add_row()
-    #row.title = content
 
-    # New Attempt
-    row.title = title
-    row.desc = desc
-    row.client = clt
+    # Fill out the Row
+    row.Title = title
+    row.Desc = desc
+    row.Client = clt
 
-    #Changed file more
-
-
-
-@app.route('/create_todo', methods=['GET'])
+@app.route('/create_ticket', methods=['GET', 'POST'])
 def create_todo():
 
     title = request.args.get('title')
